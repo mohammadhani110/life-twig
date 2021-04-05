@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import "./App.css";
 import AppBar from "./AppBar";
 import SideBar from "./SideBar";
@@ -9,9 +9,19 @@ import CreatePost from "./CreatePost";
 import Grid from "@material-ui/core/Grid";
 
 function App() {
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [chatToggle, setChatToggle] = React.useState(false);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+  const handleChatToggle=()=>{
+    setChatToggle(!chatToggle);
+  }
+
   return (
     <>
-      <AppBar />
+      <AppBar drawerToggle={handleDrawerToggle} chatToggle={handleChatToggle}/>
       <Grid
         container
         direction="row"
@@ -20,7 +30,7 @@ function App() {
         spacing={3}
       >
         <Grid item sm={2}>
-          <SideBar />
+          <SideBar handleDrawerToggle={handleDrawerToggle} mobileOpen={mobileOpen}/>
         </Grid>
         <Grid item container
         direction="row"
@@ -30,7 +40,7 @@ function App() {
           <Post />
         </Grid>
         <Grid item sm={2}>
-          <ChatSideBar />
+          <ChatSideBar  chatToggle={chatToggle} />
         </Grid>
       </Grid>
     </>

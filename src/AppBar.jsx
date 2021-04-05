@@ -89,9 +89,15 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
   },
+  showMobileMenu:{
+    display: "flex",
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
+  }
 }));
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar({drawerToggle,chatToggle}) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -105,6 +111,7 @@ export default function PrimarySearchAppBar() {
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
+    
   };
 
   const handleMenuClose = () => {
@@ -134,6 +141,9 @@ export default function PrimarySearchAppBar() {
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
+    <>
+   
+    
     <Menu
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
@@ -143,12 +153,13 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
+      
+      {/* <MenuItem>
+        <IconButton aria-label="show 4 new mails" color="inherit" onClick={chatToggle}>
             <ChatIcon />
         </IconButton>
         <p>Chats</p>
-      </MenuItem>
+      </MenuItem> */}
       <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit">
           <Badge badgeContent={11} color="secondary">
@@ -169,20 +180,21 @@ export default function PrimarySearchAppBar() {
         <p>Simmon Bradely</p>
       </MenuItem>
     </Menu>
+    </>
   );
 
   return (
     <div className={classes.grow}>
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <IconButton
+          {!mobileMoreAnchorEl&&<IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
           >
-            <MenuIcon />
-          </IconButton>
+            <MenuIcon onClick={drawerToggle} className={classes.showMobileMenu}/>
+          </IconButton>}
           {/* <Typography className={classes.title} variant="h6" noWrap>
             Material-UI
           </Typography> */}
@@ -227,12 +239,15 @@ export default function PrimarySearchAppBar() {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
-            <IconButton aria-label="show 4 new mails" color="inherit">
+            <IconButton aria-label="show 4 new mails" color="inherit" onClick={chatToggle}>
               <MenuIcon />
             </IconButton>
           </div>
 
           <div className={classes.sectionMobile}>
+            <IconButton aria-label="show 4 new mails" color="inherit" onClick={chatToggle}>
+              <MenuIcon />
+            </IconButton>
             <IconButton
               aria-label="show more"
               aria-controls={mobileMenuId}

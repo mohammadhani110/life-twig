@@ -15,8 +15,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import User1 from "./assets/img/avatar-1.png";
 import {usersFamily,usersFriend} from "./utils";
 import { IconButton } from '@material-ui/core';
-// import User2 from "./assets/img/avatar-1.png";
-// import User3 from "./assets/img/avatar-1.png";
+
 
 
 const drawerWidth = 300;
@@ -78,58 +77,55 @@ const useStyles = makeStyles((theme) => ({
   
 }));
 
-export default function PermanentDrawerRight() {
+export default function PermanentDrawerRight({chatToggle}) {
   const classes = useStyles();
- 
+  const drawer=<Drawer
+  className={classes.drawer}
+  variant="permanent"
+  classes={{
+    paper: classes.drawerPaper,
+  }}
+  anchor="right"
+>
+  <div className={classes.toolbar} />
+  <Divider />
+  <div className={classes.chatLabel}>User Family<div className={classes.underLine}></div></div>
+  <List>
+    {usersFamily.map((user, index) => (
+      <ListItem button key={index} style={{display:"flex",justifyContent:"space-around"}}>
+        <ListItemIcon ><img src={user.icon} alt={user.text}/>
+        </ListItemIcon>
+        <ListItemText primary={user.text} />
+        <span className={classes.online}></span>
+      </ListItem>
+    ))}
+  </List>
+  <Divider />
+  <div className={classes.chatLabel}>User Friends<div className={classes.underLine}></div></div>
+  <List>
+    {usersFriend.map((user, index) => (
+      <ListItem button key={index} style={{display:"flex",justifyContent:"space-around"}}>
+        <ListItemIcon ><img src={user.icon} alt={user.text}/>
+        </ListItemIcon>
+        <ListItemText primary={user.text} />
+        <span className={classes.online}></span>
+      </ListItem>
+    ))}
+  </List>
+  
+</Drawer>
+
+
   return (
     <>
-    <div className={`${classes.root} ${classes.sectionDesktop}`}>
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-        anchor="right"
-      >
-        <div className={classes.toolbar} />
-        <Divider />
-        <div className={classes.chatLabel}>User Family<div className={classes.underLine}></div></div>
-        <List>
-          {usersFamily.map((user, index) => (
-            <ListItem button key={index} style={{display:"flex",justifyContent:"space-around"}}>
-              <ListItemIcon ><img src={user.icon} alt={user.text}/>
-              </ListItemIcon>
-              <ListItemText primary={user.text} />
-              <span className={classes.online}></span>
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <div className={classes.chatLabel}>User Friends<div className={classes.underLine}></div></div>
-        <List>
-          {usersFriend.map((user, index) => (
-            <ListItem button key={index} style={{display:"flex",justifyContent:"space-around"}}>
-              <ListItemIcon ><img src={user.icon} alt={user.text}/>
-              </ListItemIcon>
-              <ListItemText primary={user.text} />
-              <span className={classes.online}></span>
-            </ListItem>
-          ))}
-        </List>
-        {/* <List>
-          {['Brandon Copper', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={index} style={{display:"flex",justifyContent:"space-around"}}>
-              <ListItemIcon ><img src={User1} alt={User1}/>
-              </ListItemIcon>
-              <ListItemText primary={text} />
-              <span className={classes.online}></span>
-            </ListItem>
-          ))}
-        </List> */}
-      </Drawer>
+   { !chatToggle &&<div className={`${classes.root} ${classes.sectionDesktop}`}>
+      {drawer}
     </div>
-   
+   }
+    { !chatToggle &&<div className={`${classes.root} ${classes.sectionMobile}`}>
+      {drawer}
+    </div>
+   }
     </>
     
   );
