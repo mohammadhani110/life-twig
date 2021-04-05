@@ -13,6 +13,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import User1 from "./assets/img/avatar-1.png";
+import {usersFamily,usersFriend} from "./utils";
+import { IconButton } from '@material-ui/core';
 // import User2 from "./assets/img/avatar-1.png";
 // import User3 from "./assets/img/avatar-1.png";
 
@@ -44,19 +46,44 @@ const useStyles = makeStyles((theme) => ({
   online:{
     top: "266px",
     left: "1869px",
-    width: "16px",
-    height: "16px",
+    width: "12px",
+    height: "12px",
     background: "#96EB6C 0% 0% no-repeat padding-box",
     opacity: 1,
     borderRadius:"50%"
-  }
+  },
+  chatLabel:{
+    fontSize:"14px",
+    margin:"10px",
+    padding:"5px",
+    fontWeight:"600"
+  },
+  underLine:{
+    background: "#96EB6C 0% 0% no-repeat padding-box",
+    width: "20px",
+    height: "5px",
+
+  }, sectionDesktop: {
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
+    },
+  },
+  sectionMobile: {
+    display: "flex",
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
+  },
+  
 }));
 
 export default function PermanentDrawerRight() {
   const classes = useStyles();
-
+ 
   return (
-    <div className={classes.root}>
+    <>
+    <div className={`${classes.root} ${classes.sectionDesktop}`}>
       <Drawer
         className={classes.drawer}
         variant="permanent"
@@ -67,28 +94,43 @@ export default function PermanentDrawerRight() {
       >
         <div className={classes.toolbar} />
         <Divider />
+        <div className={classes.chatLabel}>User Family<div className={classes.underLine}></div></div>
         <List>
-          {['Brandon Copper', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text} style={{display:"flex",justifyContent:"space-around"}}>
-              <ListItemIcon ><img src={User1} alt={User1}/>
+          {usersFamily.map((user, index) => (
+            <ListItem button key={index} style={{display:"flex",justifyContent:"space-around"}}>
+              <ListItemIcon ><img src={user.icon} alt={user.text}/>
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={user.text} />
               <span className={classes.online}></span>
             </ListItem>
           ))}
         </List>
         <Divider />
+        <div className={classes.chatLabel}>User Friends<div className={classes.underLine}></div></div>
         <List>
+          {usersFriend.map((user, index) => (
+            <ListItem button key={index} style={{display:"flex",justifyContent:"space-around"}}>
+              <ListItemIcon ><img src={user.icon} alt={user.text}/>
+              </ListItemIcon>
+              <ListItemText primary={user.text} />
+              <span className={classes.online}></span>
+            </ListItem>
+          ))}
+        </List>
+        {/* <List>
           {['Brandon Copper', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text} style={{display:"flex",justifyContent:"space-around"}}>
+            <ListItem button key={index} style={{display:"flex",justifyContent:"space-around"}}>
               <ListItemIcon ><img src={User1} alt={User1}/>
               </ListItemIcon>
               <ListItemText primary={text} />
               <span className={classes.online}></span>
             </ListItem>
           ))}
-        </List>
+        </List> */}
       </Drawer>
     </div>
+   
+    </>
+    
   );
 }

@@ -175,18 +175,17 @@ export default function PrimarySearchAppBar() {
     <div className={classes.grow}>
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          {/* <IconButton
+          <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
           >
             <MenuIcon />
-          </IconButton> */}
+          </IconButton>
           {/* <Typography className={classes.title} variant="h6" noWrap>
             Material-UI
           </Typography> */}
-          {/* <Avatar alt="Remy Sharp" src="./assets/img/avatar-1-2x.png"/> */}
           <img src={Logo} alt="img" />
 
           <div className={classes.grow} />

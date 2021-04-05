@@ -32,20 +32,20 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   drawer: {
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('md')]: {
       width: drawerWidth,
       flexShrink: 0,
     },
   },
   appBar: {
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('md')]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('md')]: {
       display: 'none',
     },
   },
@@ -57,6 +57,18 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+  },
+  sectionDesktop: {
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
+    },
+  },
+  sectionMobile: {
+    display: "flex",
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
   },
   
 }));
@@ -89,9 +101,7 @@ function ResponsiveDrawer(props) {
       <List>
         {[{text:'Home Feed',icon:<HomeIcon/>}, {text:'Personal Info',icon:<PersonIcon/>},{text:'Photos',icon:<ImageIcon/>},{text:'Feed',icon:<AssignmentIcon/>},{text:'Chat',icon:<ChatIcon/>},{text:'Settings',icon:<SettingsIcon/>}].map((item, index) => (
           <ListItem button key={item.text}>
-            {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
             <ListItemIcon>{item.icon}</ListItemIcon>
-            {/* [<HomeIcon/>,<PermIdentityIcon/>,<ImageIcon/>,<AssignmentIcon/>,<ChatIcon/>,<SettingsIcon/>].map(item=><ListItemIcon>{item}</ListItemIcon>) */}
             <ListItemText primary={item.text} />
           </ListItem>
         ))}
@@ -140,7 +150,7 @@ function ResponsiveDrawer(props) {
             {drawer}
           </Drawer>
         </Hidden>
-        <Hidden xsDown implementation="css">
+        <Hidden smDown implementation="css">
           <Drawer
             classes={{
               paper: classes.drawerPaper,
