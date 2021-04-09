@@ -26,7 +26,9 @@ import Bg from "./assets/img/pic.jpg";
 const useStyles = makeStyles((theme) => ({
   root: {
     // maxWidth: 345,
-    maxWidth: 600,
+    // maxWidth: 600,
+    maxWidth: 700,
+    width: "100%",
     marginTop: 120,
   },
   media: {
