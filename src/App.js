@@ -29,17 +29,17 @@ function App() {
         alignItems="center"
         // spacing={3}
       >
-        <Grid item >
+        <Grid item md={3} lg={3}>
           <SideBar handleDrawerToggle={handleDrawerToggle} mobileOpen={mobileOpen}/>
         </Grid>
         <Grid item container
         direction="row"
         justify="center"
-        alignItems="center" xs={10} sm={10} >
+        alignItems="center" xs={10} md={6} lg={6} >
           <CreatePost />
           <Post />
         </Grid>
-        <Grid item >
+        <Grid item md={3} lg={3}>
           <ChatSideBar  chatToggle={chatToggle} />
         </Grid>
       </Grid>

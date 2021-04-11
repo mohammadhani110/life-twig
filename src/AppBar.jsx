@@ -19,6 +19,8 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import leafs from "./assets/img/leafs.png";
 import Logo from "./assets/img/Lifetwig.png";
 import User from "./assets/img/avatar-1.png";
+import { Button } from "@material-ui/core";
+import { Home, LocalActivityOutlined, LocationOn, PeopleAlt, Timeline } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -39,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       display: "block",
     },
+    fontSize:"1rem"
   },
   search: {
     position: "relative",
@@ -58,11 +61,17 @@ const useStyles = makeStyles((theme) => ({
   searchIcon: {
     padding: theme.spacing(0, 2),
     height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
+    position: "relative",
+    // pointerEvents: "none",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+  },
+  hideInput:{
+    display:"none",
+  },
+  showInput:{
+    display:"flex",
   },
   inputRoot: {
     color: "inherit",
@@ -70,17 +79,25 @@ const useStyles = makeStyles((theme) => ({
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    // paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("md")]: {
       width: "20ch",
     },
   },
+  menuLinks:{
+    margin:"0 auto",
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
+    },
+  },
   sectionDesktop: {
     display: "none",
     [theme.breakpoints.up("md")]: {
       display: "flex",
+      justifyContent: "flex-end"
     },
   },
   sectionMobile: {
@@ -100,7 +117,9 @@ const useStyles = makeStyles((theme) => ({
 export default function PrimarySearchAppBar({drawerToggle,chatToggle}) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [searchToggle, setSearchToggle] = React.useState(false);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -160,6 +179,31 @@ export default function PrimarySearchAppBar({drawerToggle,chatToggle}) {
         </IconButton>
         <p>Chats</p>
       </MenuItem> */}
+      
+      <MenuItem>
+        <IconButton aria-label="show 11 new notifications" color="inherit">
+            <Home />
+        </IconButton>
+        <p>Home Feed</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton aria-label="show 11 new notifications" color="inherit">
+            <LocationOn />
+        </IconButton>
+        <p>Map</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton aria-label="show 11 new notifications" color="inherit">
+            <Timeline />
+        </IconButton>
+        <p>Family Tree</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton aria-label="show 11 new notifications" color="inherit">
+            <PeopleAlt />
+        </IconButton>
+        <p>Friends</p>
+      </MenuItem>
       <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit">
           <Badge badgeContent={11} color="secondary">
@@ -195,12 +239,19 @@ export default function PrimarySearchAppBar({drawerToggle,chatToggle}) {
           >
             <MenuIcon onClick={drawerToggle} className={classes.showMobileMenu}/>
           </IconButton>}
-          {/* <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
-          </Typography> */}
+         
           <img src={Logo} alt="img" />
 
           <div className={classes.grow} />
+          <div className={classes.menuLinks}>
+            <Button color="inherit">HomeFeed</Button>
+            <Button color="inherit">Map</Button>
+            <Button color="inherit">Family Tree</Button>
+            <Button color="inherit">Friends</Button>
+          </div>
+          <div className={classes.grow} />
+         
+
           <div className={classes.sectionDesktop}>
             <IconButton
               edge="end"
@@ -210,7 +261,7 @@ export default function PrimarySearchAppBar({drawerToggle,chatToggle}) {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <img src={User} alt="user" />
+              <img src={User} alt="user" style={{marginRight:"5px"}}/>
               <Typography
                 className={classes.title}
                 variant="h6"
@@ -221,17 +272,19 @@ export default function PrimarySearchAppBar({drawerToggle,chatToggle}) {
               </Typography>
             </IconButton>
             <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
+              <IconButton className={classes.searchIcon} onClick={()=>setSearchToggle(!searchToggle)}>
+                  <SearchIcon />
+              </IconButton>
               <InputBase
                 placeholder="Search…"
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,
+                  
                 }}
+                className={!searchToggle?classes.hideInput:classes.showInput}
                 inputProps={{ "aria-label": "search" }}
-              />
+                />
             </div>
 
             <IconButton aria-label="show 17 new notifications" color="inherit">

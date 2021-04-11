@@ -18,7 +18,8 @@ import { IconButton } from '@material-ui/core';
 
 
 
-const drawerWidth = 300;
+const drawerWidth = 260;
+// const drawerWidth = 300;
 
 const useStyles = makeStyles((theme) => ({
   root: {

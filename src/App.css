@@ -1,69 +1,76 @@
-.makeStyles-root-33 {
-    /* max-width: 600px !important; */
+.makeStyles-search-5 {
+  display: flex;
+  width: 32% !important;
+}
+.MuiGrid-root.MuiGrid-container.MuiGrid-item.MuiGrid-align-items-xs-center.MuiGrid-justify-xs-center.MuiGrid-grid-xs-10.MuiGrid-grid-md-8 {
+  flex-direction: column;
+}
+.makeStyles-inputInput-8 {
+  width: 10ch !important;
 }
 .makeStyles-search-5 {
-    display: flex;
+  margin-left: 0 !important;
+  margin-right: 0px !important;
+}
+.makeStyles-searchIcon-6 {
+    padding-right: 8px !important;
+    padding-left: 16px !important;
 }
 
 .makeStyles-appBar-60 {
-    /* z-index: 1201; */
-    /* background-image: url(/static/media/leafs.3adbec50.png); */
-    background-size: cover !important;
-    background-position-x: -200px !important;
+  background-size: cover !important;
+  background-position-x: -200px !important;
 }
 .MuiCardHeader-action {
-
-    align-self: center !important;
+  align-self: center !important;
 }
 
-@media (min-width: 280px) and (max-width:583px){
-    .MuiCardHeader-root {
-        flex-direction: column !important;
-    }
-.MuiCardHeader-content {
+@media (min-width: 280px) and (max-width: 583px) {
+  .MuiCardHeader-root {
+    flex-direction: column !important;
+  }
+  .MuiCardHeader-content {
     text-align: center !important;
-}
+  }
 
-.MuiCardHeader-action {
+  .MuiCardHeader-action {
     margin: 8px 0px !important;
     align-self: center !important;
-}
+  }
 
-.MuiCardActions-root {
+  .MuiCardActions-root {
     text-align: center;
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center;
-}
-input.MuiInputBase-input.makeStyles-inputInput-46 {
+  }
+  input.MuiInputBase-input.makeStyles-inputInput-46 {
     text-align: center;
-}
-.MuiCardHeader-action {
+  }
+  .MuiCardHeader-action {
     width: 100%;
-}
-.makeStyles-center-53 {
+  }
+  .makeStyles-center-53 {
     flex-direction: row !important;
     justify-content: space-between !important;
-}
-.makeStyles-inputInput-57{
+  }
+  .makeStyles-inputInput-57 {
     text-align: center;
-}
+  }
 
-.makeStyles-inputRoot-56 {
+  .makeStyles-inputRoot-56 {
     width: 80%;
-}
-.MuiPaper-root.MuiCard-root.makeStyles-root-37.MuiPaper-elevation1.MuiPaper-rounded {
+  }
+  .MuiPaper-root.MuiCard-root.makeStyles-root-37.MuiPaper-elevation1.MuiPaper-rounded {
     width: 100%;
-}
-
-
+  }
 }
 .MuiGrid-root.MuiGrid-container.MuiGrid-item.MuiGrid-align-items-xs-center.MuiGrid-justify-xs-center.MuiGrid-grid-xs-10.MuiGrid-grid-sm-10 {
-    flex-direction: column;
+  flex-direction: column;
 }
-@media (min-width: 600px){
-    .makeStyles-root-37 {
-        /* min-width: 600px; */
-        /* margin-top: 120px; */
-    }
+@media (min-width: 600px) {
+  .makeStyles-root-37 {
+    /* min-width: 600px; */
+    /* margin-top: 120px; */
+  }
 }
